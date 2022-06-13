@@ -3,7 +3,23 @@ using BadAdvisor.Mvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+/*builder.Host.ConfigureAppConfiguration((context, config) =>
+{
+    config
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddEnvironmentVariables();
+
+    var builtConfig = config.Build();
+
+    var appConfigConnectionString = builtConfig[];
+    if (!string.IsNullOrEmpty(appConfigConnectionString))
+    {
+        config.AddAzureAppConfiguration(options =>
+            options.Connect(appConfigConnectionString));
+    }
+});*/
+
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IMessagesRepository, MessagesRepository>();
@@ -11,11 +27,9 @@ builder.Services.AddScoped<ISanitizerService, SanitizerService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
