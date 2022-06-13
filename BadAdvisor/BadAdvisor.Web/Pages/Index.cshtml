@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="align-content-center">
+    <p id="message_text" class="text-monospace"></p>
+</div>
+<div class="align-content-center btn-container">
+    <button class="btn-primary" style="min-width: 150px" onclick="getRandom()">Generate</button>
+    <button class="btn-success" style="min-width: 150px" onclick="copyToClipboard()">Copy</button>
+</div>
