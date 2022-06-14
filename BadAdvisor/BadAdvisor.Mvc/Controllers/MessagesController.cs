@@ -20,7 +20,7 @@ namespace BadAdvisor.Mvc.Controllers
         [HttpGet("random")]
         public async Task<IActionResult> GetRandom()
         {
-            var maxNumber = _messagesRepository.GetTotalCount() - 1;
+            var maxNumber = _messagesRepository.GetTotalCount();
 
             var message = await _messagesRepository.Get(Rand.Next(maxNumber));
 
