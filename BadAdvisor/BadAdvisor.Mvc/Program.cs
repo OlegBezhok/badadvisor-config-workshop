@@ -3,7 +3,7 @@ using BadAdvisor.Mvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-/*builder.Host.ConfigureAppConfiguration((context, config) =>
+builder.Host.ConfigureAppConfiguration((context, config) =>
 {
     config
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -11,13 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 
     var builtConfig = config.Build();
 
-    var appConfigConnectionString = builtConfig[];
+    var appConfigConnectionString = builtConfig["AppConfig_ConnectionString"];
     if (!string.IsNullOrEmpty(appConfigConnectionString))
     {
         config.AddAzureAppConfiguration(options =>
             options.Connect(appConfigConnectionString));
     }
-});*/
+});
 
 
 builder.Services.AddControllersWithViews();

@@ -10,11 +10,14 @@ namespace BadAdvisor.Mvc.Controllers
         private static readonly Random Rand = new (DateTime.UtcNow.Millisecond);
         private readonly IMessagesRepository _messagesRepository;
         private readonly ISanitizerService _sanitizerService;
+        private readonly IConfiguration _configuration;
 
-        public MessagesController(IMessagesRepository messagesRepository, ISanitizerService sanitizerService)
+        public MessagesController(IMessagesRepository messagesRepository,
+            ISanitizerService sanitizerService, IConfiguration configuration)
         {
             _messagesRepository = messagesRepository;
             _sanitizerService = sanitizerService;
+            _configuration = configuration;
         }
 
         [HttpGet("random")]
@@ -37,7 +40,7 @@ namespace BadAdvisor.Mvc.Controllers
 
         private bool IsBadWordsFilterEnabled()
         {
-            return false;
+            return bool.Parse(_configuration["BadWordsFeatureEnabled"]);
         }
     }
 
